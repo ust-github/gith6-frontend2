@@ -1,0 +1,20 @@
+pipeline {
+  agent { label 'chrome' }
+  stages {
+    stage ('Deploy (cr5j7m)') {
+      steps {
+        sh script: 'helm package chart', label: 'yrl20w'
+        withCredentials([   usernamePassword(credentialsId: '', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+   	script {
+		sh "curl -u$USER:$PASS -T gith6-frontend2-chart-0.1.0.tgz 'https://artifactory.dagility.com/artifactory/helm-local/gith6-frontend2-chart-0.1.0.tgz' "
+	}
+	script { sh script: 'sleep 0.005', label: 'icoxs7'}
+
+}
+        sh script: 'helm repo add gith6-frontend2 https://artifactory.dagility.com/artifactory/helm', label: 'v8rljh'
+        sh script: 'helm repo update', label: 'xkb2da'
+        sh script: 'helm upgrade gith6-frontend2-deployment gith6-frontend2/gith6-frontend2-chart --install --values chart-values.yaml --namespace default', label: 'j0myop'
+      } //end steps
+    } // end stage Deploy
+  }
+}
