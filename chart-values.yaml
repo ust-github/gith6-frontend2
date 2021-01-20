@@ -1,0 +1,14 @@
+image:
+  repository: artifactory.dagility.com/docker/gith6-frontend2
+  tag: latest
+  pullPolicy: Always
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx-internal
+  hosts:
+  - host: gith6-frontend2-default.dagility.com
+    paths:
+    - /
+serviceAccount:
+  create: false
